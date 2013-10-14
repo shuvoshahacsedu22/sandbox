@@ -1,0 +1,72 @@
+NAME: Kelsey Stemmler
+USER: kastemml
+UWID: 20260015
+
+CS 456: ASSIGNMENT # 2
+Shortest path alg'm
+Via UDP
+ 
+=======
+ NOTES
+=======
+
+I used NBR_ROUTERS + 1 in arrays so that accessing was direct. I understand
+this is not the most efficient, but I found it easier to code and read.
+
+In my documentation I used the word ACK to mean when a router has sent
+a HELLO message along a link and received a HELLO back along that 
+same link.
+
+NOTE: you will have to manually clean up the port because of no clean up
+(see router.java for further information)
+
+
+======
+Files:
+======
+CircuitDB.java   - CircuitDB struct
+HelloPkt.java    - HELLO struct
+LinkCost.java    - LinkCost Struct
+logger.java      - for log files
+LSPDU.java       - LSPDU struct
+router.java      - main functionality of this assignment
+socket.java      - socket for sending/receiving packets
+
+router.sh        - has file for starting up routers, in order, to run together
+
+
+On host linux032: (ROUTERS)
+NOTE: you may have to change the ports in this file in order to get it to work
+    ./router.sh
+
+On host linux 028 (NSE)
+    ./nse-linux386 linux032.student.cs 7771
+
+
+==================
+SOFTWARE VERSIONS:
+==================
+
+Undergrad machines:
+-------------------
+linux028.student.cs (NSE)
+linux032.student.cs (Routers)
+
+
+Make: 
+-----
+GNU Make 3.81
+Copyright (C) 2006  Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.
+There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.
+
+This program built for x86_64-pc-linux-gnu
+
+Java:
+-----
+java version "1.6.0_20"
+OpenJDK Runtime Environment (IcedTea6 1.9.10) (6b20-1.9.10-0ubuntu1~10.10.2)
+OpenJDK 64-Bit Server VM (build 19.0-b09, mixed mode)
+
+

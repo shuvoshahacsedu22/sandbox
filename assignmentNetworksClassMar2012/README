@@ -1,0 +1,104 @@
+NAME: Kelsey Stemmler
+Date: March 2012
+
+CS 456: ASSIGNMENT # 1
+GO-BACK-N PROTOCOL 
+Via UDP
+
+Files:
+------
+fileReader.java  - for reading the input file
+Logger.java      - for *.log files (writing seqnums)
+modnum.java      - for updating the seqnum mod 32
+packet.java      - supplied
+receiver.java    - receiver functionality
+sender.java      - sender functionality
+socket.java      - sendSocket and receiveSocket
+
+
+=======
+ TIMER
+=======
+
+To determine an appropriate timer value, I pinged the receiver from the sender host.
+I got the following from my sending host (linux032), to receivng host (linux028):
+> ping linux028.student.cs
+ping linux028.student.cs.uwaterloo.ca
+PING linux028.student.cs.uwaterloo.ca (129.97.167.69) 56(84) bytes of data.
+64 bytes from linux028.student.cs.uwaterloo.ca (129.97.167.69): icmp_req=1 ttl=64 time=7.43 ms
+
+I would set my timer to 8ms, but this seems to short. After talking with the prof, she suggested setting it to 150ms. 
+
+Thus, I set my timer to 150 ms
+
+=========================
+ EMPTY FILE SPECIAL CASE
+=========================
+If the file I am transmitting does not have any content, I will have nothing to send to the receiver. The sender and receiver will both run forever because no one is sending/receiving any packets. I created a "workaround" for this by sending the empty string to the receiver, so that the receiver can ACK the packet, etc. and the algorithm will eventually terminate. I also confirmed with the prof that this behaviour is acceptable. 
+
+==================
+SOFTWARE VERSIONS:
+==================
+
+Undergrad machines:
+-------------------
+linux024.student.cs (Emulator)
+linux028.student.cs (Receiver)
+linux032.student.cs (Sender)
+
+
+Make: 
+-----
+GNU Make 3.81
+Copyright (C) 2006  Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.
+There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.
+
+This program built for x86_64-pc-linux-gnu
+
+Java:
+-----
+java version "1.6.0_20"
+OpenJDK Runtime Environment (IcedTea6 1.9.10) (6b20-1.9.10-0ubuntu1~10.10.2)
+OpenJDK 64-Bit Server VM (build 19.0-b09, mixed mode)
+
+
+
+==========
+HOW TO RUN
+==========
+I ran the following commands on each of the hosts listed below:
+(I did my tesitng with the Emulator, Receiver and Sender all running on different hosts)
+
+NOTE: I used the hostnames for the Emulator, and the IP addresses for the receiver and sender
+
+
+EMULATOR HOST:
+-----------------
+linux024.student.cs
+129.97.167.68
+
+Run the following command:
+> ./nEmulator-linux386 9996 129.97.167.69 9997 9998 129.97.167.126 9999 1 0.2 0
+
+
+
+RECEIVER HOST:
+---------------
+linux028.student.cs
+129.97.167.69
+
+Run the following command:
+> java receiver 129.97.167.68 9998 9997 output.txt
+
+
+
+SENDER HOST:
+---------------
+linux032.student.cs
+129.97.167.126
+
+Run the following command:
+> java sender linux024.student.cs 9996 9999 input.txt
+
