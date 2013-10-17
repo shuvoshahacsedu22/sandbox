@@ -3,12 +3,21 @@ import sys
 '''
 Calculate the number of words in the supplied files, 
 assuming the entire file (and therefore possibly an 
-entire word may not fit) may not fit in memory.A
+entire word) may not fit in memory.
 
 Use a fixed size buffer to read in portions of the
 file at once, and update the word count at every
 word that is processed.
 
+Example:
+
+Kelsey-Stemmlers-MacBook-Pro:sandbox kelsey$ python wordCount.py ~/tmp.{s,l,h,e}*
+
+word count: 
+  33    /Users/kelsey/tmp.small
+  198   /Users/kelsey/tmp.large
+  594   /Users/kelsey/tmp.huge
+  1782  /Users/kelsey/tmp.enorm
 '''
 
 BUFF_SIZE = 256
@@ -41,6 +50,7 @@ def word_count(file):
             
     except IOError as e:
         print "Error reading file: %s" % e
+
     finally:
         input.close()
     
@@ -48,7 +58,7 @@ def word_count(file):
 
 def main(args):
     if len(args) > 1:
-        print "word count: " 
+        print "word count: "
         for f in args[1:]:
             word_count(f)
 
