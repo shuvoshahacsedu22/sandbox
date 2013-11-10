@@ -22,29 +22,29 @@ word count:
 
 BUFF_SIZE = 256
 
-def isWhitespace(char):
+def is_whitespace(char):
     return char in [' ', '\t', '\n'] 
 
-def count_words(buff, inMidWord):
+def count_words(buff, in_mid_word):
     num_words = 0
     for i in range(len(buff)):
-        if (isWhitespace(buff[i])):
-            if inMidWord:
+        if (is_whitespace(buff[i])):
+            if in_mid_word:
                 num_words += 1
-            inMidWord = False
+            in_mid_word = False
         else:
-            inMidWord = True
-    return (num_words, inMidWord)
+            in_mid_word = True
+    return (num_words, in_mid_word)
 
 def word_count(file):
     num_words = 0
-    inMidWord = False
+    in_mid_word = False
 
     try:
         input = open(file, 'r')
         buff = input.read(BUFF_SIZE)
         while buff:
-            (add_words, inMidWord) = count_words(buff, inMidWord)
+            (add_words, in_mid_word) = count_words(buff, in_mid_word)
             num_words += add_words
             buff = input.read(BUFF_SIZE)
             

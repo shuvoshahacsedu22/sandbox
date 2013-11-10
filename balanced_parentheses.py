@@ -13,7 +13,7 @@ There are two versions here:
 LEFT_PARENS  = ['(','[','{']
 RIGHT_PARENS = [')',']','}']
 
-def isBalancedSimple(content): 
+def is_balanced_simple(content): 
     """Check if the content string has 
     balanced parentheses: ( , )
     This can be done simply by using a counter
@@ -30,7 +30,7 @@ def isBalancedSimple(content):
     return (counter == 0)
 
 
-def isBalanced(content):
+def is_balanced(content):
     """Check if the content string has
     balanced parentheses: [ (), {}, [] ]
 

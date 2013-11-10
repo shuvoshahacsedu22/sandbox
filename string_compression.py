@@ -15,13 +15,13 @@ input: abcdd
 output: abcdd
 '''
 
-def compressCharString(char, count):
+def compress_char_string(char, count):
     if count == 1:
         return char
     else:
         return "%s%d" % (char, count)
 
-def compressString(word):
+def compress_string(word):
     if not word: return null 
 
     # init the first vals
@@ -35,10 +35,10 @@ def compressString(word):
         else:
             # encountered the next char, so
             # accumulate the rest of the string
-            compressed += compressCharString(char, count)
+            compressed += compress_char_string(char, count)
             char = c
             count = 1
-    compressed += compressCharString(char, count)
+    compressed += compress_char_string(char, count)
 
     # once we're done processing, decide
     # which to return
@@ -47,7 +47,7 @@ def compressString(word):
     return word
 
 def main(args):
-    print compressString(args)
+    print compress_string(args)
 
 if __name__ == "__main__":
     sys.exit(main(sys.argv[1]))
