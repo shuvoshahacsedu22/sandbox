@@ -1,0 +1,52 @@
+Client-Server code for file uploading. 
+
+Design:
+-------
+
+The client code is an interactive shell, in which the client can 
+upload as many files as they want to the server. The client may
+interrupt a file upload with CTRL-C, and resume it later by
+specifying the same filename on the commandline prompt. The 
+server keeps track of which files (and at what position) it has 
+written. It does so by maintaining a dictionary of filenames, which
+map to the current position. The server returns the current position
+to the client, after each chunk is received and written to the server 
+file. Thus, the client relies on the position given by the server, 
+and not it's own current position (since the server may have experienced
+an error while receiving the data/writing it to the file). 
+
+
+Execution: 
+----------
+Run the server and client code in separate shells to simulate
+a server and client running on separate hosts.
+
+Server:
+    python server.py
+
+Client:
+    python client.py
+
+NOTE: several client shells may be open at once, though the server can
+only be receiving data from one at a time.
+
+
+Cleanup: 
+--------
+Remove all of the files written by the server by running
+the following command:
+    rm *.server
+
+
+Future Improvements:
+--------------------
+* allow the server to be interrupted during an upload (currently
+  can only really be done by the client)
+* compute a checksum of the client and server files to ensure they 
+  are equal once the download is complete.
+* allow the client to modify the file and upload it from scratch with
+  the same name (currently this requires a server restart).
+* improve the logging statements. E.g., the client outputs which
+  position it will begin uploading at, even if it is the last position
+  and doesn't really upload anything.
+* allow multiple clients and servers to stream asychronously.
